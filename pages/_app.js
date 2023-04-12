@@ -1,3 +1,4 @@
+import 'remixicon/fonts/remixicon.css'
 import '@/styles/globals.css'
 import 'node_modules/bootstrap/dist/css/bootstrap.min.css'
 
