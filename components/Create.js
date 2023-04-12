@@ -1,10 +1,14 @@
-import { useState } from 'react'
+import { useState,useRef } from 'react'
 import { nanoid } from 'nanoid'
-import css from "../styles/Create.module.css";
 
 const Create = (props) => {
 
-  console.log(props)
+  // console.log(props)
+
+  const titleElem = useRef()
+  const [error,setError] =useState(false)
+  
+
   const {tasks,setTasks} = props
   const [title, setTitle] = useState('')
   const [desc, setDesc] = useState('')
@@ -17,44 +21,54 @@ const Create = (props) => {
       title,
       desc
     }
-    console.log(todo)
+    // console.log(todo)
 
     setTasks([...tasks, todo])
 
     setTitle(' ')
     setDesc(' ')
   }
+  
+  const changeTitle = (e) =>{
+    let inputlength = titleElem.current.value.length;
 
-  const greencolor ={
-    color:'green'
+        if (inputlength >= 4) {
+            setError(false);
+            // console.log(error)
+        } else {
+            setError(true);
+        }
+        setTitle(e.target.value);
+
+    // console.log(titleElem.current.value)
+    // console.log(titleElem.current.style.border="20px solid green")
+    // titleElem.current.style.border="20px solid green"
+    // alert('lwde')
+    // console.log(e)
   }
 
   return (
     <>
 
-    {/* inline css */}
-    {/* <h1 style={{color:"red"}}>{props.children}</h1> */}
-
-    {/* internal css  */}
-    {/* <h1 style={greencolor}>{props.children}</h1> */}
-
-    {/* globals css */}
-    {/* <h1 className='h1Create'>{props.children}</h1> */}
-
-    {/* external css */}
-    <h1 className={css.createH1}>{props.children}</h1>
-    {/* ***************************** */}
       <h2 className="mb-5 fs-2 fw-light">Todo-App</h2>
 
       <form onSubmit={createTaskHandler}>
 
+        <div className="mb-3">
         <input
+          ref={titleElem}
           type="text"
           placeholder='Title'
           className='form-control mb-3 w-50'
-          onChange={(e) => { setTitle(e.target.value) }}
+          onChange={changeTitle}
           value={title}
         />
+        <small className='text-danger'>
+          {error && "invalid title value"}
+        </small>
+
+        </div>
+
         <input
           type="text"
           className='mb-3 w-50 form-control'
