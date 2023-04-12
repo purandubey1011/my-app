@@ -7,17 +7,19 @@ const index = () => {
 
   const [tasks, setTasks] = useState([])
 
- 
-
   // ******end*******
   return (
 
     <div className='container mt-5 p-5 bg-light'>
       
+      {/* <h1>tooodoooo aaaapppppp</h1>  */}
+
       {/* <Create tasks={tasks} setTasks={setTasks}/> */}
+
       <Create tasks={tasks} setTasks={setTasks}>
                 <h1>Bahut he jyaza secret information</h1>
       </Create>
+
       <Show tasks={tasks} setTasks={setTasks}/>
 
     </div>

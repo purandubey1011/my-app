@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { nanoid } from 'nanoid'
+import css from "../styles/Create.module.css";
 
 const Create = (props) => {
 
@@ -23,10 +24,26 @@ const Create = (props) => {
     setTitle(' ')
     setDesc(' ')
   }
- 
+
+  const greencolor ={
+    color:'green'
+  }
 
   return (
     <>
+
+    {/* inline css */}
+    {/* <h1 style={{color:"red"}}>{props.children}</h1> */}
+
+    {/* internal css  */}
+    {/* <h1 style={greencolor}>{props.children}</h1> */}
+
+    {/* globals css */}
+    {/* <h1 className='h1Create'>{props.children}</h1> */}
+
+    {/* external css */}
+    <h1 className={css.createH1}>{props.children}</h1>
+    {/* ***************************** */}
       <h2 className="mb-5 fs-2 fw-light">Todo-App</h2>
 
       <form onSubmit={createTaskHandler}>
